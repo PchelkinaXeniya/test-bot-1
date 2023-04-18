@@ -1,0 +1,23 @@
+{
+  "positions" : [ {
+    "id" : "/Start",
+    "x" : 240,
+    "y" : 305
+  }, {
+    "id" : "/HowToAddCard",
+    "x" : 240,
+    "y" : 847
+  }, {
+    "id" : "/NoMatch",
+    "x" : 240,
+    "y" : 1490
+  }, {
+    "id" : "/ThanksForContacting",
+    "x" : 240,
+    "y" : 2075
+  }, {
+    "id" : "/TheEnd",
+    "x" : 620,
+    "y" : 2075
+  } ]
+}

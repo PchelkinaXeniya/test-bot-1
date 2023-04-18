@@ -1,23 +1,36 @@
-require: slotfilling/slotFilling.sc
-  module = sys.zb-common
-theme: /
+require:requirements.sc
 
+theme: /
+    
     state: Start
         q!: $regex</start>
-        a: Начнём.
+        a: Здравствуйте!
+        script:
+            $session = {}
+            
+    state: HowToAddCard
+        q!: * {$need * (*плат*|плот*|*гасит*|*госит*|*плач*) * ([по|за] (кредит*|кридит*))} *
 
-    state: Hello
-        intent!: /привет
-        a: Привет привет
-
-    state: Bye
-        intent!: /пока
-        a: Пока пока
-
+        a:  Сейчас расскажу порядок действий.
+        script:
+                $response.replies = $response.replies || [];
+                $response.replies.push({
+                    "type": "timeout",
+                    "interval": 6,
+                    "targetState": "/ThanksForContacting"
+                });
+                
     state: NoMatch
         event!: noMatch
-        a: Я не понял. Вы сказали: {{$request.query}}
+        random:
+            a: Не смог разобрать :( Попробуете сказать иначе?
+            a: Простите, я не понял вас. Давайте попробуем еще раз?
+            a: Извините, я не понял. Попробуйте сформулировать по-другому  
 
-    state: Match
-        event!: match
-        a: {{$context.intent.answer}}
+    state: ThanksForContacting       
+        a: Приятно было пообщаться. Всегда готов помочь вам снова!
+        go!: /TheEnd
+    
+    state: TheEnd
+        script:
+            $jsapi.stopSession();            
