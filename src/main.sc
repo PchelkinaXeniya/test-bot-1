@@ -8,8 +8,8 @@ theme: /
         script:
             $session = {}
             
-    state: HowToAddCard
-        q!: * {$need * (*плат*|плот*|*гасит*|*госит*|*плач*) * ([по|за] (кредит*|кридит*))} *
+    state: WhereToOpenCard 
+        q!: * {([$where] $otdelenie) * $order * $bankCard } *
 
         a:  Сейчас расскажу порядок действий.
         script:
