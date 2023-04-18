@@ -9,7 +9,7 @@ theme: /
             $session = {}
             
     state: WhereToOpenCard 
-        q!: * {$branch * $open * $card} *
+        q!: * {($need|$branch) * $open * $card} *
         a:  Сейчас расскажу порядок действий.
         script:
                 $response.replies = $response.replies || [];
